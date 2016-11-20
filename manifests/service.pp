@@ -18,7 +18,7 @@ class pureftpd::service {
     service { 'pureftpd':
       ensure   => $service_ensure,
       name     => $real_service_name,
-      enable   => $pureftpd::real_service_enabled,
+      enable   => $pureftpd::service_enabled,
       provider => $pureftpd::service_provider,
     }
 
@@ -32,7 +32,7 @@ class pureftpd::service {
 
     # only establish ordering between config file and service if
     # we're managing the config file.
-    if $pureftpd::manage_config {
+    if $pureftpd::config_manage {
       File[$pureftpd::config_db_dir] -> Service['pureftpd']
       File[$pureftpd::config_dir] -> Service['pureftpd']
       File[$pureftpd::defaults_file] -> Service['pureftpd']
