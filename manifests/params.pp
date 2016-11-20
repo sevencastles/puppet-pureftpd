@@ -31,7 +31,7 @@ class pureftpd::params {
       $pgsql_config_file  = '/etc/pure-ftpd/db/postgresql.conf'
       $service_name       = 'pure-ftpd'
       $service_name_ldap  = 'pure-ftpd-ldap'
-      $serivce_name_mysql = 'pure-ftpd-mysql'
+      $service_name_mysql = 'pure-ftpd-mysql'
       $service_name_pgsql = 'pure-ftpd-postgresql'
       $service_provider   = 'systemd'
       $ssl_pemfile        = '/etc/ssl/private/pure-ftpd.pem'
@@ -56,7 +56,7 @@ class pureftpd::params {
   }
 
   $default_ldap_config = deep_merge( {
-    'LDAPConfigFile'  =>  $ldap_config_file
+    'LDAPConfigFile' =>  $ldap_config_file
     }, $default_config)
 
   $default_mysql_config = deep_merge( {
@@ -70,7 +70,7 @@ class pureftpd::params {
   $default_ssl = {
     'country'      => 'DE',
     'organization' => 'Pure-FTPd Puppet Snakeoil',
-    'commonname'   =>  $::fqdn,
+    'commonname'   => $::fqdn,
     'days'         => 3456
   }
 

@@ -9,10 +9,10 @@ class pureftpd::service {
     }
 
     $real_service_name = $pureftpd::server_type ? {
-      'postgres'  => $pureftpd::service_name_pgsql,
-      'mysql'     => $pureftpd::service_name_mysql,
-      'ldap'      => $pureftpd::service_name_ldap,
-      default     => $pureftpd::service_name
+      'postgres' => $pureftpd::service_name_pgsql,
+      'mysql'    => $pureftpd::service_name_mysql,
+      'ldap'     => $pureftpd::service_name_ldap,
+      default    => $pureftpd::service_name
     }
 
     service { 'pureftpd':
@@ -26,7 +26,7 @@ class pureftpd::service {
     # we're managing the package.
     if $pureftpd::package_manage {
       Service['pureftpd'] {
-        require  => Package['pureftpd-server'],
+        require => Package['pureftpd-server'],
       }
     }
 

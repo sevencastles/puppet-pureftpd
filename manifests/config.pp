@@ -14,13 +14,13 @@ class pureftpd::config {
     }
 
     $attributes = $pureftpd::server_type ? {
-      'postgres'  => deep_merge($pureftpd::params::default_pgsql_config,
+      'postgres' => deep_merge($pureftpd::params::default_pgsql_config,
         $pureftpd::config),
-      'mysql'     => deep_merge($pureftpd::params::default_mysql_config,
+      'mysql'    => deep_merge($pureftpd::params::default_mysql_config,
         $pureftpd::config),
-      'ldap'      => deep_merge($pureftpd::params::default_ldap_config,
+      'ldap'     => deep_merge($pureftpd::params::default_ldap_config,
         $pureftpd::config),
-      default     => deep_merge($pureftpd::params::default_config,
+      default    => deep_merge($pureftpd::params::default_config,
         $pureftpd::config)
     }
 
@@ -39,7 +39,7 @@ class pureftpd::config {
       # service restart is enabled.
       if $pureftpd::restart and $pureftpd::service_manage {
         File["${pureftpd::config_dir}/${attribute}"] {
-          notify  => Service['pureftpd']
+          notify => Service['pureftpd']
         }
       }
     }
@@ -55,7 +55,7 @@ class pureftpd::config {
     file { $pureftpd::dir_aliases_file:
       ensure  =>  file,
       content =>  epp('pureftpd/pureftpd-dir-aliases.epp', {
-        'config'  =>  $pureftpd::dir_aliases
+        'config' =>  $pureftpd::dir_aliases
         }),
       owner   =>  'root',
       group   =>  'root',
@@ -92,7 +92,7 @@ class pureftpd::config {
           ensure  =>  file,
           path    =>  $pureftpd::pgsql_config_file,
           content =>  epp('pureftpd/postgresql.conf.epp', {
-            'config'  =>  deep_merge($pureftpd::params::pgsqlconf_default,
+            'config' =>  deep_merge($pureftpd::params::pgsqlconf_default,
               $pureftpd::pgsql_config)
             }),
           owner   =>  'root',
@@ -106,7 +106,7 @@ class pureftpd::config {
           ensure  =>  file,
           path    =>  $pureftpd::ldap_config_file,
           content =>  epp('pureftpd/ldap.conf.epp', {
-            'config'  =>  deep_merge($pureftpd::params::ldapconf_default,
+            'config' =>  deep_merge($pureftpd::params::ldapconf_default,
               $pureftpd::ldap_config)
             }),
           owner   =>  'root',
@@ -122,13 +122,13 @@ class pureftpd::config {
     # service restart is enabled.
     if $pureftpd::restart and $pureftpd::service_manage {
       File["pureftpd-config-${pureftpd::server_type}"] {
-        notify  => Service['pureftpd']
+        notify => Service['pureftpd']
       }
       File[$pureftpd::dir_aliases_file] {
-        notify  => Service['pureftpd']
+        notify => Service['pureftpd']
       }
       File[$pureftpd::defaults_file] {
-        notify  => Service['pureftpd']
+        notify => Service['pureftpd']
       }
 
     }
@@ -170,7 +170,7 @@ class pureftpd::config {
     # service restart is enabled.
     if $pureftpd::restart and $pureftpd::service_manage {
       Concat[$pureftpd::ssl_pemfile] {
-        notify  => Service['pureftpd']
+        notify => Service['pureftpd']
       }
     }
   }
