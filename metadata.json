@@ -1,6 +1,6 @@
 {
   "name": "bkuebler-pureftpd",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Benjamin Kübler <b.kuebler@kuebler-it.de>",
   "license": "Apache-2.0",
   "summary": "A module for manage pure-ftpd with all available plugins",
