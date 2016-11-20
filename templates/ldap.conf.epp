@@ -1,0 +1,102 @@
+<%- | Hash $config | -%>
+### MANAGED BY PUPPET ###
+
+#############################################
+#                                           #
+# Sample Pure-FTPd LDAP configuration file. #
+# See README.LDAP for explanations.         #
+#                                           #
+#############################################
+
+
+# Optional : name of the LDAP server. Default : localhost
+
+LDAPServer <%= $config['LDAPServer'] %>
+
+
+# Optional : server port. Default : 389
+
+LDAPPort   <%= $config['LDAPPort'] %>
+
+
+# Mandatory : the base DN to search accounts from. No default.
+
+LDAPBaseDN <%= $config['LDAPBaseDN'] %>
+
+
+# Optional : who we should bind the server as.
+#            Default : binds anonymously or binds as FTP users
+
+LDAPBindDN <%= $config['LDAPBindDN'] %>
+
+
+# Password if we don't bind anonymously
+# This configuration file should be only readable by root
+
+LDAPBindPW <%= $config['LDAPBindPW'] %>
+
+
+# Optional : default UID, when there's no entry in a user object
+
+# LDAPDefaultUID 500
+<% if $config['LDAPDefaultUID']  { -%>
+LDAPDefaultUID <%= $config['LDAPDefaultUID'] %>
+<% } -%>
+
+
+# Optional : default GID, when there's no entry in a user object
+
+# LDAPDefaultGID 100
+<% if $config['LDAPDefaultGID']  { -%>
+LDAPDefaultGID <%= $config['LDAPDefaultGID'] %>
+<% } -%>
+
+
+# Filter to use to find the object that contains user info
+# \L is replaced by the login the user is trying to log in as
+# The default filter is (&(objectClass=posixAccount)(uid=\L))
+
+# LDAPFilter (&(objectClass=posixAccount)(uid=\L))
+<% if $config['LDAPFilter']  { -%>
+LDAPFilter <%= $config['LDAPFilter'] %>
+<% } -%>
+
+
+# Attribute to get the home directory
+# Default is homeDirectory (the standard attribute from posixAccount)
+
+# LDAPHomeDir homeDirectory
+<% if $config['LDAPHomeDir']  { -%>
+LDAPHomeDir <%= $config['LDAPHomeDir'] %>
+<% } -%>
+
+
+# LDAP protocol version to use
+# Version 3 (default) is mandatory with recent releases of OpenLDAP.
+
+# LDAPVersion 3
+<% if $config['LDAPVersion']  { -%>
+LDAPVersion <%= $config['LDAPVersion'] %>
+<% } -%>
+
+
+# Optional: use TLS to connect to the LDAP server
+# LDAPUseTLS  True
+<% if $config['LDAPUseTLS']  { -%>
+LDAPUseTLS <%= $config['LDAPUseTLS'] %>
+<% } -%>
+
+
+# Can be PASSWORD or BIND.
+# PASSWORD retrieves objects and checks against the userPassword attribute
+# BIND tries to bind
+
+LDAPAuthMethod <%= $config['LDAPAuthMethod'] %>
+
+
+# Optional: default home directory if there's LDAPHomeDir entry
+
+# LDAPDefaultHomeDirectory /var/shared
+<% if $config['LDAPDefaultHomeDirectory']  { -%>
+LDAPDefaultHomeDirectory <%= $config['LDAPDefaultHomeDirectory'] %>
+<% } -%>

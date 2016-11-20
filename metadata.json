@@ -1,0 +1,23 @@
+{
+  "name": "bkuebler-pureftpd",
+  "version": "0.0.1",
+  "author": "Benjamin Kübler <b.kuebler@kuebler-it.de>",
+  "license": "Apache-2.0",
+  "summary": "A module for manage pure-ftpd with all available plugins",
+  "source": "https://github.com/bkuebler/puppet-pureftpd.git",
+  "project_page": "https://github.com/bkuebler/puppet-pureftpd",
+  "issues_url": "https://github.com/bkuebler/puppet-pureftpd/issues",
+  "tags": ["pureftpd", "pure-ftpd", "pureftp-server", "pureftpd-ldap", "pureftpd-mysql", "pureftpd-pgsql"],
+  "operatingsystem_support": [
+    {
+      "operatingsystem":"Debian",
+      "operatingsystemrelease":["8"]
+    }
+   ],
+  "dependencies": [
+    { "name": "puppetlabs/stdlib", "version_requirement": ">= 4.2.0 < 5.0.0" },
+    { "name": "camptocamp/openssl", "version_requirement": ">= 1.8.0 < 5.0.0" },
+    { "name": "puppetlabs/concat", "version_requirement": ">= 1.1.1 < 3.0.0" }
+  ],
+  "data_provider": "hiera"
+}
